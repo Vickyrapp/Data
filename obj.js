@@ -1,4 +1,4 @@
-const cards = [
+
 	{ x: "浴びます", y: "あびます", z: "Mandi" },
 	{ x: "危ない", y: "あぶない", z: "Bahaya" },
 	{ x: "油", y: "あぶら", z: "Minyak" },
@@ -686,4 +686,3 @@ const cards = [
 	{ x: "郵便局", y: "ゆうびんきょく", z: "Kantor pos" },
 	{ x: "有名", y: "ゆうめい", z: "Terkenal" }
 	
-];
