@@ -1,0 +1,1 @@
+const correctPassword: "RQ PRIDE!";
