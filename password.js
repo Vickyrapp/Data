@@ -1,1 +1,1 @@
-const correctPassword: "RQ PRIDE!";
+RQ
