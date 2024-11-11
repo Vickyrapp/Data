@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Hanna</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            user-select:none;
+        }
+        /*body {
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: center;
+            text-align:center;
+            background-image: url('media/credit.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+            width:100%;
+            height: 100vh;
+        }*/
+        body {
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align:center;
+            background-image: url('media/credit.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width:100%;
+            height: 100vh;
+            opacity:0;
+            scale:0;
+            transition:opacity 1s 0.3s;
+            position:relative;
+        }
+        .container {
+        	display:grid;
+        	place-items:center;
+        	grid-gap:4rem;
+        	width:100%;
+        	overflow:auto;
+        	height:100%;
+        	padding:4rem 0;
+        }
+        .item {
+        	display:grid;
+        	grid-gap:1rem;
+        	padding:3rem 1rem 1rem;
+        	border:double;
+        	width:80vw;
+        	background-color:rgba(50,50,50,.2);
+        	border-radius:3px;
+        	position:relative;
+        }
+        .item-header {
+        	position:absolute;
+        	left:0;
+        	top:-0.6rem;
+        	right:0;
+        	text-align:center;
+        }
+        .item-header span {
+        	background-color:silver;
+        	font-weight:bold;
+        	font-size:1.1rem;
+        	padding:0.4rem 2rem;
+        	border:solid;
+        	border-radius:3px;
+        	box-shadow:0px 0px 6px black;
+        }
+        h1 {
+        	text-align: center;
+        	font-size: 3rem;
+        	font-weight:800;
+        	color: pink;
+        	text-shadow:1px 1px 0 black, 1px 1px 4px black;
+        }
+        .button {
+            padding: 1rem 2rem;
+            background: linear-gradient(145deg, #111, #333);
+            border: none;
+            border-radius: 1.5rem;
+            box-shadow: 0.5rem 0.5rem 1.5rem rgba(0, 0, 0, 0.4), -0.5rem -0.5rem 1.5rem rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            letter-spacing: 0.1rem;
+            cursor:default;
+        }
+
+        .button:hover {
+            filter:brightness(0.9);
+            transform: translateY(-0.2rem);
+            box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.3), -0.5rem -0.5rem 2rem rgba(255, 255, 255, 0.4);
+        }
+		.premium {
+		  position: relative;
+		  background: linear-gradient(145deg, #d4af37, #cfa800);
+		  color: #212121;
+		  border: none;
+		  overflow: hidden; /* Untuk memastikan efek tidak keluar dari tombol */
+		  transition: transform 0.3s ease, box-shadow 0.3s ease;
+		}
+		
+		.premium::before {
+		  content: "";
+		  position: absolute;
+		  top: 0;
+		  left: -100%;
+		  width: 100%;
+		  height: 100%;
+		  background: rgba(255, 255, 255, 0.4); /* Efek cahaya putih */
+		  transition: left 0.3s ease;
+		}
+		
+		.premium:hover {
+		  transform: translateY(-6px); /* Efek angkat tombol */
+		  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 -3px 8px rgba(255, 255, 255, 0.2);
+		}
+		
+		.premium:hover::before {
+		  left: 100%; /* Menampilkan efek whitescreen */
+		}
+		.connect {
+			color:pink;
+			font-weight:bold;
+			font-size:1.2rem;
+        	text-shadow:1px 1px 0 black, 1px 1px 4px black;
+		}
+    </style>
+</head>
+<body>
+	<div class="container">
+		<h1>花クラス</h1>
+		<div class="item">
+			<div class="item-header"><span>JFT</span></div>
+			<a href="jft_kosakata.html" class="button button1">Kosakata</a>
+			<a href="jft_kanji.html" class="button button2">Kanji</a>
+			<a href="jft_kanji_kuis.html" class="button button3">Kanji Kuis</a>
+			<a href="jft_tatabahasa.html" class="button button3">Tatabahasa</a>
+			<a href="jft_premium.html" class="button premium">JFT Premium</a>
+		</div>
+		<div class="item">
+			<div class="item-header"><span>MNN</span></div>
+			<a href="mnn_kosakata_kuis.html" class="button button1">Kosakata Kuis</a>
+		</div>
+		<div class="item">
+			<div class="item-header"><span>SSW</span></div>
+			<a href="ssw_pm_kosakata.html" class="button button5">Kotoba PM</a>
+			<a href="#" class="button premium" onclick="alert('>_<')">SSW Premium</a>
+		</div>
+		<div class="item">
+			<div class="item-header"><span>Lainnya</span></div>
+			<a href="credit.html" class="button button6">Kredit</a>
+		</div>
+    </div>
+    <script>
+
+// Fungsi untuk memeriksa status koneksi saat pertama kali dimuat
+function checkConnectionStatus() {
+    if (!navigator.onLine) {
+	    document.body.innerHTML = "<p class='connect'>ANDA SEDANG OFFLINE...</p>"
+    } else {
+    	MyURL();
+    }
+}
+
+// Cek status koneksi pertama kali saat skrip dijalankan
+checkConnectionStatus();
+
+// Event listener untuk memantau status koneksi
+window.addEventListener('online', function() {
+    checkConnectionStatus();  // Memperbarui status saat online
+});
+
+window.addEventListener('offline', function() {
+    checkConnectionStatus();  // Memperbarui status saat offline
+});
+
+function MyURL() {
+// URL raw file CSS dari GitHub
+var cssURL = "https://raw.githubusercontent.com/Vickyrapp/Data/main/style.css";
+
+// Mengambil file CSS menggunakan fetch
+fetch(cssURL)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Gagal memuat file CSS');
+        }
+        return response.text();  // Mengambil CSS sebagai teks
+    })
+    .then(css => {
+        // Membuat elemen <style> dan menambahkan CSS ke dalamnya
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = css;  // Menambahkan CSS ke dalam elemen <style>
+        
+        // Menambahkan elemen <style> ke dalam <head>
+        document.head.appendChild(style);
+    })
+    .catch(error => {
+	    document.body.innerHTML = "<p class='connect'>Terjadi Kesalahan...</p>"
+    });
+} MyURL();
+
+    </script>
+</body>
+</html>
