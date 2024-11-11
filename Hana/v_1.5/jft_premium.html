@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>JFT Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            user-select: none;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            padding: 2rem;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            display: none; /* Sembunyikan sampai password benar */
+        }
+        .header {
+            text-align: center;
+            font-size: 2rem;
+            font-weight:750;
+            color: pink;
+            margin-bottom: 2rem;
+        }
+        .text-header {
+        	text-shadow:1px 1px 1px rgba(0,0,0,.6);
+        }
+        .header p {
+        	color:#aaa;
+        	font-size:0.9rem;
+        	padding:1px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: 750;
+        }
+        a {
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: #e9ecef;
+            text-align: center;
+            cursor: default;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #d3d3d3;
+        }
+        .password-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content:space-between;
+            height:100vh;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+            text-align: center;
+            font-weight: 450;
+        }
+        button {
+            margin-top: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1rem;
+            font-weight: 450;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body id="JFTPremium">
+    <div class="password-container" id="passwordContainer">
+        <div class="header">
+        	花クラス
+        	<p>JFT Premium</p>
+        </div>
+        <input type="text" id="password" placeholder="Masukan password" />
+        <button onclick="checkPassword()">Masuk</button>
+    </div>
+
+    <div class="container" id="linkContainer">
+        <div class="header">
+        	<span class="text-header">花クラス</span>
+        	<p>JFT Premium</p>
+        </div>
+    </div>
+    <script src="global.js"></script>
+</body>
+</html>

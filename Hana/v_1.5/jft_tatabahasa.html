@@ -1,0 +1,570 @@
+<!--
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Tatabahasa Jepang</title>
+    <script src="jft_tatabahasa.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        .example {
+            margin-left: 20px;
+        }
+        .toggleBtn {
+            cursor: pointer;
+            color: #0066cc;
+        }
+        .toggleBtn:hover {
+            text-decoration: underline;
+        }
+        .closeBtn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #f44336;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .closeBtn:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Belajar Tatabahasa Jepang</h1>
+
+    <button id="closeBtn" class="closeBtn" style="display:none;" onclick="showName()">Kembali ke Halaman Name</button>
+
+    <div id="tatabahasaContainer"></div>
+
+    <script>
+        // Fungsi untuk menampilkan halaman pertama (name)
+        function showName() {
+            const container = document.getElementById('tatabahasaContainer');
+            container.innerHTML = ''; // Kosongkan kontainer
+
+            // Menampilkan tombol "Close"
+            document.getElementById('closeBtn').style.display = 'none'; // Sembunyikan tombol Close
+            tatabahasa.forEach(function(section, index) {
+                // Membuat elemen untuk bagian tatabahasa
+                let sectionDiv = document.createElement('div');
+                sectionDiv.classList.add('section');
+                
+                let title = document.createElement('h2');
+                title.textContent = section.name;
+                title.classList.add('toggleBtn');
+                title.onclick = function() {
+                    showX(index); // Panggil showX untuk menampilkan x
+                };
+                sectionDiv.appendChild(title);
+                
+                container.appendChild(sectionDiv);
+            });
+        }
+
+        // Fungsi untuk menampilkan bagian X (ketika diklik pada name)
+        function showX(sectionIndex) {
+            const container = document.getElementById('tatabahasaContainer');
+            container.innerHTML = ''; // Kosongkan kontainer
+
+            // Menampilkan tombol "Close"
+            document.getElementById('closeBtn').style.display = 'inline-block'; // Tampilkan tombol Close
+
+            let section = tatabahasa[sectionIndex];
+
+            section.content.forEach(function(item) {
+                // Menampilkan x
+                let itemDiv = document.createElement('div');
+                
+                let term = document.createElement('h3');
+                term.textContent = item.x;
+                term.classList.add('toggleBtn');
+                term.onclick = function() {
+                    toggleZ(item, itemDiv); // Panggil toggleZ untuk menampilkan/menyembunyikan z di bawah x
+                };
+                itemDiv.appendChild(term);
+
+                container.appendChild(itemDiv);
+            });
+        }
+
+        // Fungsi untuk menampilkan atau menyembunyikan bagian Z (contoh kalimat) di bawah X
+        function toggleZ(item, itemDiv) {
+            // Cek apakah contoh kalimat sudah ada di bawah item
+            let existingExamples = itemDiv.querySelectorAll('.example');
+
+            if (existingExamples.length === 0) {
+                // Menampilkan contoh kalimat jika belum ada
+                item.z.forEach(function(example) {
+                    let examplePara = document.createElement('p');
+                    examplePara.classList.add('example');
+                    examplePara.innerHTML = example;
+                    itemDiv.appendChild(examplePara);
+                });
+            } else {
+                // Menyembunyikan contoh kalimat jika sudah ada
+                existingExamples.forEach(function(example) {
+                    example.remove();
+                });
+            }
+        }
+
+        // Mulai dengan menampilkan nama tatabahasa
+        document.addEventListener('DOMContentLoaded', showName);
+    </script>
+
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Tatabahasa JFT</title>
+    <script src="jft_tatabahasa.js" defer></script>
+    <style>
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+		
+		body {
+			font-family: 'Arial', sans-serif;
+			padding: 1rem;
+			user-select: none;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+        
+        .header {
+            text-align: center;
+            font-size: 2rem;
+            font-weight:750;
+            color: pink;
+            margin-bottom: 2rem;
+        }
+        .text-header {
+        	text-shadow:1px 1px 1px rgba(0,0,0,.6);
+        }
+        .header p {
+        	color:#aaa;
+        	font-size:0.9rem;
+        	padding:1px;
+        }
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Button styling */
+        .closeBtn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 12px 20px;
+            font-size: 14px;
+            border-radius: 3px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .closeBtn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .closeBtn:focus {
+            outline: none;
+        }
+
+        /* Container for the tatabahasa content */
+        #tatabahasaContainer {
+            display:grid;
+            grid-gap:1rem;
+            width: 100%;
+            /*
+            max-width: 900px;
+            margin: 0 auto;
+            */
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggleBtn {
+            cursor: pointer;
+            background-color: #0069d9;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        h2.toggleBtn, .closeBtn {
+        	font-weight: bold;
+        	font-size:1.07rem;
+        	border: 2px solid #28a745;
+        	background: linear-gradient(145deg, #28a745, #1c7c33);
+        	color: #f5f5dc;
+        	border-radius: 8px;
+        	outline: none;
+        	white-space:nowrap;
+        	transition: all 0.3s ease;
+        	box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), -4px -4px 8px rgba(255, 255, 255, 0.2);
+        	text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2), 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .closeBtn {font-size:1rem;}
+        h3.toggleBtn {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            grid-gap:1rem;
+            align-items:center;
+            background-color:transparent;
+            color:#0069d9;
+            color:#28a745;
+        }
+        h3.toggleBtn:hover {
+        	background-color:transparent;
+        }
+        .toggleBtn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .toggleBtn:focus {
+            outline: none;
+        }
+        .toggleBtn span {
+        	width:100%;
+        	white-space:nowrap;
+        	overflow:auto;
+        }
+        .toggleBtn span:nth-child(1) {
+        	font-weight:bold;
+        	font-size:1rem;
+        }
+        .toggleBtn span:nth-child(2) {
+        	color:#aaa;
+        	font-weight:bold;
+        	font-size:0.9rem;
+        	text-align:right;
+        }
+        .example {
+            margin-left: 20px;
+            margin-top: 10px;
+            margin-bottom:2rem;
+            font-size: 16px;
+            color: #555;
+            padding-left: 10px;
+            border-left: 3px solid #ddd;
+            font-style: italic;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .example-hidden {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+
+    </style>
+</head>
+<body id="JFTTatabahasa">
+    <div class="header">
+    	<span class="text-header">花クラス</span>
+    	<p>Tatabahasa JFT Basic A2</p>
+    </div>
+    <button id="closeBtn" class="closeBtn" style="display:none;" onclick="showName()">Close</button>
+    <div id="tatabahasaContainer"></div>
+    <script>
+        // Fungsi untuk menampilkan halaman pertama (name)
+        function showName() {
+            const container = document.getElementById('tatabahasaContainer');
+            container.innerHTML = ''; // Kosongkan kontainer
+
+            // Sembunyikan tombol "Close"
+            document.getElementById('closeBtn').style.display = 'none';
+
+            tatabahasa.forEach(function(section, index) {
+                // Membuat elemen untuk bagian tatabahasa
+                let sectionDiv = document.createElement('div');
+                sectionDiv.classList.add('section');
+                
+                let title = document.createElement('h2');
+                title.textContent = section.name;
+                title.classList.add('toggleBtn');
+                title.onclick = function() {
+                    showX(index); // Panggil showX untuk menampilkan x
+                };
+                sectionDiv.appendChild(title);
+                
+                container.appendChild(sectionDiv);
+            });
+        }
+
+        // Fungsi untuk menampilkan bagian X (ketika diklik pada name)
+        function showX(sectionIndex) {
+            const container = document.getElementById('tatabahasaContainer');
+            container.innerHTML = ''; // Kosongkan kontainer
+
+            // Menampilkan tombol "Close"
+            document.getElementById('closeBtn').style.display = 'inline-block'; // Tampilkan tombol Close
+
+            let section = tatabahasa[sectionIndex];
+
+            section.content.forEach(function(item) {
+                // Menampilkan x
+                let itemDiv = document.createElement('div');
+                
+                let term = document.createElement('h3');
+                term.classList.add('toggleBtn');
+                term.innerHTML = `<span>${item.x}</span><span>${item.y}</span>`;
+                term.onclick = function() {
+                    toggleZ(item, itemDiv); // Panggil toggleZ untuk menampilkan/menyembunyikan z di bawah x
+                };
+                itemDiv.appendChild(term);
+
+                container.appendChild(itemDiv);
+            });
+        }
+
+        // Fungsi untuk menampilkan atau menyembunyikan bagian Z (contoh kalimat) di bawah X
+        function toggleZ(item, itemDiv) {
+            // Cek apakah contoh kalimat sudah ada di bawah item
+            let existingExamples = itemDiv.querySelectorAll('.example');
+
+            if (existingExamples.length === 0) {
+                // Menampilkan contoh kalimat jika belum ada
+                item.z.forEach(function(example) {
+                    let examplePara = document.createElement('p');
+                    examplePara.classList.add('example');
+                    examplePara.innerHTML = example;
+                    itemDiv.appendChild(examplePara);
+                });
+            } else {
+                // Menyembunyikan contoh kalimat jika sudah ada
+                existingExamples.forEach(function(example) {
+                    example.classList.add('example-hidden');
+                   // setTimeout(function() {
+                        example.remove();
+                  //  }, 300); // Menunggu animasi selesai sebelum menghapus
+                });
+            }
+        }
+
+        // Mulai dengan menampilkan nama tatabahasa
+        document.addEventListener('DOMContentLoaded', showName);
+    </script>
+
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Tatabahasa Jepang</title>
+    <script src="jft_tatabahasa.js" defer></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4fdf2; /* Background hijau muda */
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2e8b57; /* Warna hijau tua untuk judul */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggleBtn {
+            cursor: pointer;
+            color: #388e3c; /* Warna hijau sedang untuk tombol */
+            font-size: 1.2em;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .toggleBtn:hover {
+            color: #2e7d32; /* Warna hijau lebih gelap saat hover */
+        }
+
+        .example {
+            margin-left: 20px;
+            font-size: 1.1em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .closeBtn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #388e3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .closeBtn:hover {
+            background-color: #2e7d32;
+        }
+
+        /* Responsif */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .section {
+                padding: 10px;
+            }
+
+            .toggleBtn {
+                font-size: 1em;
+            }
+
+            .closeBtn {
+                top: 10px;
+                left: 10px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Belajar Tatabahasa Jepang</h1>
+
+    <button id="closeBtn" class="closeBtn" style="display:none;" onclick="showName()">Kembali ke Halaman Name</button>
+
+    <div id="tatabahasaContainer"></div>
+
+    <script>
+        // Fungsi untuk menampilkan halaman pertama (name)
+        function showName() {
+            const container = document.getElementById('tatabahasaContainer');
+            container.innerHTML = ''; // Kosongkan kontainer
+
+            // Menampilkan tombol "Close"
+            document.getElementById('closeBtn').style.display = 'none'; // Sembunyikan tombol Close
+            tatabahasa.forEach(function(section, index) {
+                // Membuat elemen untuk bagian tatabahasa
+                let sectionDiv = document.createElement('div');
+                sectionDiv.classList.add('section');
+                
+                let title = document.createElement('h2');
+                title.textContent = section.name;
+                title.classList.add('toggleBtn');
+                title.onclick = function() {
+                    showX(index); // Panggil showX untuk menampilkan x
+                };
+                sectionDiv.appendChild(title);
+                
+                container.appendChild(sectionDiv);
+            });
+        }
+
+        // Fungsi untuk menampilkan bagian X (ketika diklik pada name)
+        function showX(sectionIndex) {
+            const container = document.getElementById('tatabahasaContainer');
+            container.innerHTML = ''; // Kosongkan kontainer
+
+            // Menampilkan tombol "Close"
+            document.getElementById('closeBtn').style.display = 'inline-block'; // Tampilkan tombol Close
+
+            let section = tatabahasa[sectionIndex];
+
+            section.content.forEach(function(item) {
+                // Menampilkan x
+                let itemDiv = document.createElement('div');
+                
+                let term = document.createElement('h3');
+                term.textContent = item.x;
+                term.classList.add('toggleBtn');
+                term.onclick = function() {
+                    toggleZ(item, itemDiv); // Panggil toggleZ untuk menampilkan/menyembunyikan z di bawah x
+                };
+                itemDiv.appendChild(term);
+
+                container.appendChild(itemDiv);
+            });
+        }
+
+        // Fungsi untuk menampilkan atau menyembunyikan bagian Z (contoh kalimat) di bawah X
+        function toggleZ(item, itemDiv) {
+            // Cek apakah contoh kalimat sudah ada di bawah item
+            let existingExamples = itemDiv.querySelectorAll('.example');
+
+            if (existingExamples.length === 0) {
+                // Menampilkan contoh kalimat jika belum ada
+                item.z.forEach(function(example) {
+                    let examplePara = document.createElement('p');
+                    examplePara.classList.add('example');
+                    examplePara.innerHTML = example;
+                    itemDiv.appendChild(examplePara);
+                });
+            } else {
+                // Menyembunyikan contoh kalimat jika sudah ada
+                existingExamples.forEach(function(example) {
+                    example.remove();
+                });
+            }
+        }
+
+        // Mulai dengan menampilkan nama tatabahasa
+        document.addEventListener('DOMContentLoaded', showName);
+    </script>
+
+</body>
+</html>
+-->
