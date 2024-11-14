@@ -388,6 +388,8 @@ else if (pageId == "JFTTatabahasa") {
 			container.appendChild(sectionDiv);
 		});
 	}
+	showName();
+	alert();
 	
 	// Fungsi untuk menampilkan bagian X (ketika diklik pada name)
 	function showX(sectionIndex) {
@@ -440,7 +442,7 @@ else if (pageId == "JFTTatabahasa") {
 	}
 	
 	// Mulai dengan menampilkan nama tatabahasa
-	document.addEventListener('DOMContentLoaded', showName);
+	// document.addEventListener('DOMContentLoaded', showName);
 }
 
 
