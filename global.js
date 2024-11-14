@@ -389,7 +389,6 @@ else if (pageId == "JFTTatabahasa") {
 		});
 	}
 	showName();
-	alert();
 	
 	// Fungsi untuk menampilkan bagian X (ketika diklik pada name)
 	function showX(sectionIndex) {
