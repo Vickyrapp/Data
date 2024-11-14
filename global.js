@@ -11,7 +11,7 @@ document.ondragstart = function () {
 };
 
 
-let pageIdd = document.body.id;
+let pageId = document.body.id;
 
 if (pageId == "JFTKosakata"){
 	function loadJSON(url, callback) {
