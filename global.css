@@ -131,7 +131,7 @@ html {
 		font-size: 2rem;
 		font-weight:750;
 		color: pink;
-		margin-top:1rem;
+		padding-top:1rem;
 		margin-bottom: 2rem;
 	}
 	.text-header {
@@ -187,6 +187,7 @@ html {
 		left: 0;
 		right: 0;
 		bottom: 0;
+		height:100vh;
 		background: #ebebeb;
 		padding: 1rem;
 		padding-top:4rem;
