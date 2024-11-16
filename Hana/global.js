@@ -522,7 +522,7 @@ else if (pageId == "JFTPremium") {
 
 
 
-else if ( pageId == "MNNKosakata" || padeId == "N5Kosakata") {
+else if ( pageId == "MNNKosakata" || pageId == "N5Kosakata") {
 
 	const grupContainer = document.querySelector('.grup-container');
 	const cardContainer = document.querySelector('.card-container');
