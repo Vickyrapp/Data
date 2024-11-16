@@ -1,5 +1,4 @@
 
-
 // mencegah link ditahan
 document.ondragstart = function () {
 	return false;
