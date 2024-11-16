@@ -535,7 +535,7 @@ else if ( pageId == "MNNKosakata" || pageId == "N5Kosakata") {
 	// Membuat tombol untuk setiap grup
 	for (let i = 0; i < obj.length; i++) {
 		const button = document.createElement('button');
-		button.innerText = `BAB ${i + 1}`;
+		button.innerText = `${obj[i].id}`;
 		button.className = 'group-button';
 		button.addEventListener('click', () => showGroup(i));
 		cardGroup.appendChild(button);
