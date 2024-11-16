@@ -630,7 +630,7 @@ else if (pageId == "MNNKosakataKuis") {
 		btnContent.innerHTML = obj.map((bab, index) =>
 		`<button onclick="startQuiz(${index})">${bab.id}</button>`).join('');
 	}
-	
+	loadMainMenu();
 	// Fungsi untuk mulai kuis
 	function startQuiz(babIndex) {
 		currentBabIndex = babIndex;
@@ -783,107 +783,12 @@ else if (pageId == "MNNKosakataKuis") {
 		document.getElementById('quiz-container').style.display = 'none';
 		document.getElementById('result').textContent = '';
 	}
-	
-	// Load menu utama ketika halaman dimuat
-//	window.onload = loadMainMenu;
 }
 
 
 
 
 
-
-
-/*
-else if ( pageId == "N5Kosakata") {
-
-	const grupContainer = document.querySelector('.grup-container');
-	const cardContainer = document.querySelector('.card-container');
-	const cardsDiv = document.querySelector('.cards');
-	const closeButton = document.querySelector('.close-button');
-	const shuffleButton = document.querySelector('.shuffle-button');
-	const resetButton = document.querySelector('.reset-button');
-	const cardGroup = document.querySelector('.card-group');
-	
-	// Membuat tombol untuk setiap grup
-	for (let i = 0; i < obj.length; i++) {
-		const button = document.createElement('button');
-		button.innerText = `${obj[i].id}`;
-		button.className = 'group-button';
-		button.addEventListener('click', () => showGroup(i));
-		cardGroup.appendChild(button);
-	}
-	
-	let currentGroup = [];
-	let originalGroup = [];
-	
-	function showGroup(groupIndex) {
-		cardsDiv.innerHTML = ''; // Bersihkan isi cardsDiv
-		
-		currentGroup = obj[groupIndex].content;
-		originalGroup = [...currentGroup]; // Simpan salinan urutan asli
-		
-		window.scrollTo(0, 0); // Scroll ke atas
-		
-		displayCards(currentGroup);
-		grupContainer.classList.add('hidden');
-		cardContainer.classList.remove('hidden');
-		setTimeout(() => cardContainer.classList.add('visible'), 10); // Animasi tampil
-	}
-	
-	function displayCards(group) {
-		group.forEach(card => {
-			const cardElement = document.createElement('div');
-			cardElement.className = 'card';
-			
-			cardElement.innerHTML = `
-					<div class="card-inner">
-						<div class="card-front">
-							<p>${card.x}</p>
-						</div>
-						<div class="card-back">
-							<p>${card.y}</p>
-							<p>${card.z}</p>
-						</div>
-					</div>
-					`;
-			
-			// Event listener untuk membalik kartu
-			cardElement.addEventListener('click', () => {
-				const cardInner = cardElement.querySelector('.card-inner');
-				cardInner.classList.toggle('flipped');
-				cardElement.classList.toggle('active'); // Toggle untuk border hijau
-			});
-			
-			cardsDiv.appendChild(cardElement);
-		});
-	}
-	
-	// Tombol shuffle (acak)
-	shuffleButton.addEventListener('click', () => {
-		currentGroup.sort(() => Math.random() - 0.5);
-		cardsDiv.innerHTML = ''; // Bersihkan isi cardsDiv
-		displayCards(currentGroup); // Tampilkan kartu yang sudah diacak
-	});
-	
-	// Tombol reset
-	resetButton.addEventListener('click', () => {
-		currentGroup = [...originalGroup]; // Kembalikan ke urutan asli
-		cardsDiv.innerHTML = ''; // Bersihkan isi cardsDiv
-		displayCards(currentGroup); // Tampilkan kembali kartu
-	});
-	
-	// Tombol close
-	closeButton.addEventListener('click', () => {
-		cardContainer.classList.remove('visible'); // Animasi tutup
-		setTimeout(() => {
-			cardContainer.classList.add('hidden');
-			grupContainer.classList.remove('hidden');
-		}, 300); // Tunggu animasi selesai
-	});
-
-}
-*/
 
 
 
