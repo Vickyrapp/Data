@@ -636,7 +636,7 @@ else if (pageId == "MNNKosakataKuis") {
 		currentBabIndex = babIndex;
 		const bab = obj[babIndex];
 		header.innerHTML = obj[babIndex].id;
-		timeLeft = bab.content.length * 1; // Waktu dihitung berdasarkan jumlah soal * 5 detik
+		timeLeft = bab.content.length * 10; // Waktu dihitung berdasarkan jumlah soal * 5 detik
 		document.getElementById('button-container').style.display = 'none';
 		document.getElementById('quiz-container').style.display = 'block';
 		document.getElementById('result').textContent = '';
